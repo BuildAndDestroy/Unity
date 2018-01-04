@@ -62,7 +62,7 @@ class NetworkTools(object):
 def parse_arguments():
     """Obtain tcp/udp client or server specification then parse the host and port details."""
     legal_statement = 'server_client.py Copyright (C) 2017  Mitch O\'Donnell\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it\nunder certain conditions.'
-    url = 'Insert URL for tool or KB here.'
+    url = 'https://github.com/BuildAndDestroy/Unity'
     epilog = '{}\n\n{}'.format(url, legal_statement)
     parser = argparse.ArgumentParser(
         description=__doc__, epilog=epilog, formatter_class=argparse.RawTextHelpFormatter)
@@ -98,7 +98,6 @@ def parse_arguments():
 def main():
     """Parse user arguments for tcp/udp client or server, then bind to host and port."""
     args = parse_arguments()
-    print args
 
     if args.command == 'tcp_server':
         tcp_server = NetworkTools(args.port, args.host)
