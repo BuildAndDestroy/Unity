@@ -24,7 +24,7 @@ setup(
     url                     = '',
     license                 = open('LICENSE').read(),
     install_requirements    = [''],
-    entry_points            = {'console scripts': commands},
+    entry_points            = {'console_scripts': commands},
     prefix                  = '/opt/Network_Utilities',
     long_description        = open('README.md').read()
 )
