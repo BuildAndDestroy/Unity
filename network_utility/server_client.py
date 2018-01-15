@@ -33,6 +33,7 @@ class NetworkTools(object):
     def tcp_server(self):
         """A TCP Server that binds to host and port."""
         self.s_tcp.bind((self.host, self.port))
+        print '[*] TCP Server binding to {}, listening on port {}.'.format(self.host, self.port)
         self.s_tcp.listen(5)
         c, addr = self.s_tcp.accept()
         print 'Connection from {}'.format(addr)
@@ -49,6 +50,7 @@ class NetworkTools(object):
     def tcp_client(self):
         """A TCP client that binds to a host and port."""
         self.s_tcp.connect((self.host, self.port))
+        print '[*] Connected to {} on port {}.'.format(self.host, self.port)
         print 'Type \'q\' to quit.'
         message = str(raw_input('-> '))
         while message != 'q':
