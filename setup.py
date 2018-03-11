@@ -8,7 +8,7 @@
 
 from setuptools import setup
 
-__version__ = '2.0-udp'
+__version__ = '2.1-udp'
 __author__ = 'Mitch O\'Donnell'
 packages = ['network_utility']
 commands = ['server_client = network_utility.server_client:main']
@@ -23,7 +23,7 @@ setup(
     packages                = packages,
     url                     = '',
     license                 = open('LICENSE').read(),
-    install_requirements    = [''],
+    install_requirements    = ['argparse', 'socket'],
     entry_points            = {'console_scripts': commands},
     prefix                  = '/opt/Network_Utilities',
     long_description        = open('README.md').read()
