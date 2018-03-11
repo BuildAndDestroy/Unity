@@ -35,17 +35,17 @@ class NetworkTools(object):
         self.s_tcp.bind((self.host, self.port))
         print '[*] TCP Server binding to {}, listening on port {}.'.format(self.host, self.port)
         self.s_tcp.listen(5)
-        c, addr = self.s_tcp.accept()
+        data, addr = self.s_tcp.accept()
         print 'Connection from {}'.format(addr)
         while True:
-            data = c.recv(1024)
+            data = data.recv(1024)
             if not data:
                 break
             print 'From connected User {} on port {}, message: {}'.format(addr[0], addr[1], data)
             data = str(data).upper()
             print 'Sending {}'.format(data)
-            c.send(data)
-        c.close()
+            data.send(data)
+        data.close()
 
     def tcp_client(self):
         """A TCP client that binds to a host and port."""
@@ -60,6 +60,35 @@ class NetworkTools(object):
             message = str(raw_input('-> '))
         self.s_tcp.close()
 
+    def udp_server(self):
+        """UDP server that binds to user provided host and port."""
+        self.s_udp.bind((self.host, self.port))
+        print '[*] UDP Server binding to {}, listening on port {}.'.format(self.host, self.port)
+        while True:
+            data, address = self.s_udp.recvfrom(1024)
+            if not data:
+                break
+            data = str(data).upper()
+            # if data is 'Q':
+            #     self.s_udp.sendto('Server disconnected.', address)
+            #     self.s_udp.close()
+            print '[*] From connected User {} on port {}, message:\n {}'.format(address[0], address[1], data)
+            self.s_udp.sendto('ACK', address)
+        self.s_udp.close()
+
+    def udp_client(self):
+        """UDP client to connect to a UDP server."""
+        address = (self.host, 9099)
+        server = (self.host, self.port)
+        self.s_udp.bind(address)
+        print '[*] Type \'q\' to quit.'
+        message = str(raw_input('-> '))
+        while message != 'q':
+            self.s_udp.sendto(message, server)
+            data, address = self.s_udp.recvfrom(1024)
+            print '[*] Received from server {}, listening on port {}:\n {}'.format(self.host, self.port, data)
+            message = str(raw_input('-> '))
+        self.s_udp.close()
 
 def parse_arguments():
     """Obtain tcp/udp client or server specification then parse the host and port details."""
@@ -85,13 +114,13 @@ def parse_arguments():
     tcp_server_subparser.add_argument(
         'port', help='Port number we are binding, must be integer.')
 
-    # udp_client_subparser = subparsers.add_parser('udp_client', help='Create a UDP client.')
-    # udp_client_subparser.add_argument('host', help='IPv4 Address of ethernet device for binding.')
-    # udp_client_subparser.add_argument('port', help='Port number we are binding, must be integer.')
-    #
-    # udp_server_subparser = subparsers.add_parser('udp_server', help='Create a UDP server.')
-    # udp_server_subparser.add_argument('host', help='IPv4 Address of ethernet device for binding.')
-    # udp_server_subparser.add_argument('port', help='Port number we are binding, must be integer.')
+    udp_client_subparser = subparsers.add_parser('udp_client', help='Create a UDP client.')
+    udp_client_subparser.add_argument('host', help='IPv4 Address of ethernet device for binding.')
+    udp_client_subparser.add_argument('port', help='Port number we are binding, must be integer.')
+    
+    udp_server_subparser = subparsers.add_parser('udp_server', help='Create a UDP server.')
+    udp_server_subparser.add_argument('host', help='IPv4 Address of ethernet device for binding.')
+    udp_server_subparser.add_argument('port', help='Port number we are binding, must be integer.')
 
     args = parser.parse_args()
     return args
@@ -108,12 +137,12 @@ def main():
         tcp_client = NetworkTools(args.port, args.host)
         tcp_client.tcp_client()
 
-    # if args.command == 'udp_server':
-    #     udp_server = NetworkTools(args.port, args.host)
-    #     udp_server.udp_server()
-    # if args.command == 'udp_client':
-    #     udp_client = NetworkTools(args.port, args.host)
-    #     udp_client.udp_client()
+    if args.command == 'udp_server':
+        udp_server = NetworkTools(args.port, args.host)
+        udp_server.udp_server()
+    if args.command == 'udp_client':
+        udp_client = NetworkTools(args.port, args.host)
+        udp_client.udp_client()
 
 
 if __name__ == '__main__':

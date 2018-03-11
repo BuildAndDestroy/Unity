@@ -8,7 +8,7 @@
 
 from setuptools import setup
 
-__version__ = '1.0'
+__version__ = '2.0-udp'
 __author__ = 'Mitch O\'Donnell'
 packages = ['network_utility']
 commands = ['server_client = network_utility.server_client:main']
