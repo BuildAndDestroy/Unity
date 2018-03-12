@@ -36,18 +36,18 @@ class NetworkTools(object):
         print '[*] TCP Server binding to {}, listening on port {}.'.format(
             self.host, self.port)
         self.s_tcp.listen(5)
-        data, addr = self.s_tcp.accept()
+        data_client, addr = self.s_tcp.accept()
         print 'Connection from {}'.format(addr)
         while True:
-            data = data.recv(1024)
+            data = data_client.recv(1024)
             if not data:
                 break
             print 'From connected User {} on port {}, message: {}'.format(
                 addr[0], addr[1], data)
             data = str(data).upper()
             print 'Sending {}'.format(data)
-            data.send(data)
-        data.close()
+            data_client.send(data)
+        data_client.close()
 
     def tcp_client(self):
         """A TCP client that binds to a host and port."""
