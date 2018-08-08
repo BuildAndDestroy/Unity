@@ -81,7 +81,7 @@ def parse_arguments():
     parser.add_argument('-s', '--ssl', action='store_true',
                         help='Verify the SSL of requested website.')
     parser.add_argument('-t', '--tor', action='store_true',
-                        help='Route through the Tor network.')
+                        help='Route through the Tor network.\n\rCURRENTLY NOT WORKING')
     parser.add_argument('-c', '--content', action='store_true',
                         help='Print the landing page content requested.')
     parser.add_argument('-H', '--headers', action='store_true',
@@ -95,8 +95,6 @@ def parse_arguments():
 def main():
     """Scrape websites for usable data."""
     args = parse_arguments()
-
-    print args
 
     for url in args.urls:
         site_requested = RequestSite(url, args.ssl, args.tor)
