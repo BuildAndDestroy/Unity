@@ -8,10 +8,11 @@
 
 from setuptools import setup
 
-__version__ = '2.3-tcp-regression'
+__version__ = '3.0-scraper'
 __author__ = 'Mitch O\'Donnell'
-packages = ['network_utility']
-commands = ['server_client = network_utility.server_client:main']
+packages = ['network_utility', 'web_scraper']
+commands = ['server_client = network_utility.server_client:main',
+            'unity_scraper = web_scraper.web_scraper:main']
 
 
 setup(
@@ -23,7 +24,7 @@ setup(
     packages                = packages,
     url                     = '',
     license                 = open('LICENSE').read(),
-    install_requirements    = ['argparse', 'socket'],
+    install_requirements    = ['argparse', 'socket', 'requests'],
     entry_points            = {'console_scripts': commands},
     prefix                  = '/opt/Network_Utilities',
     long_description        = open('README.md').read()
