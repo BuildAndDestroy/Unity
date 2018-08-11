@@ -8,7 +8,7 @@
 
 from setuptools import setup
 
-__version__ = '3.0-scraper'
+__version__ = '3.1-scraper-tor'
 __author__ = 'Mitch O\'Donnell'
 packages = ['network_utility', 'web_scraper']
 commands = ['server_client = network_utility.server_client:main',
