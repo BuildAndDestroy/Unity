@@ -8,11 +8,11 @@
 
 from setuptools import setup
 
-__version__ = '3.3-scraper-tor'
+__version__ = '4.0-scripts'
 __author__ = 'Mitch O\'Donnell'
-packages = ['network_utility', 'web_scraper']
+packages = ['network_utility', 'web_scraper', 'scripts']
 commands = ['server_client = network_utility.server_client:main',
-            'unity_scraper = web_scraper.web_scraper:main']
+            'unity_scraper = scripts.unity_scraper:main']
 
 
 setup(
@@ -24,7 +24,7 @@ setup(
     packages                = packages,
     url                     = '',
     license                 = open('LICENSE').read(),
-    install_requirements    = ['argparse', 'socket', 'requests'],
+    install_requirements    = ['argparse', 'socket', 'requests', 'prettytable'],
     entry_points            = {'console_scripts': commands},
     prefix                  = '/opt/Network_Utilities',
     long_description        = open('README.md').read()
