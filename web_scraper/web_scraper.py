@@ -32,7 +32,8 @@ class RequestSite(object):
     def request_site(self):
         """Request site with or without tor."""
         if self.tor:
-            self.session.proxies = {'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
+            self.session.proxies = {
+                'http': 'socks5h://127.0.0.1:9050', 'https': 'socks5h://127.0.0.1:9050'}
         site_request = self.session.get(
             self.url, headers=self.my_user_agent, verify=self.ssl)
         return site_request
@@ -88,8 +89,10 @@ def parse_arguments():
                         help='Print Headers sent back from the requested URL.')
     parser.add_argument('-k', '--cookies', action='store_true',
                         help='Print Cookies the site has registered for this session.')
-    parser.add_argument('-f', '--format', action='store_true', help='Format into tables and print.')
-    parser.add_argument('-r', '--response', action='store_true', help='Return site status code.')
+    parser.add_argument('-f', '--format', action='store_true',
+                        help='Format into tables and print.')
+    parser.add_argument('-r', '--response', action='store_true',
+                        help='Return site status code.')
 
     args = parser.parse_args()
     return args
@@ -99,14 +102,12 @@ def main():
     """Scrape websites for usable data."""
     args = parse_arguments()
 
-    print args
-
     for url in args.urls:
         site_requested = RequestSite(url, args.ssl, args.tor)
         if args.format:
             if args.response:
                 table_format([site_requested.url, 'Response'],
-                         site_requested.return_site_status())
+                             site_requested.return_site_status())
             if args.headers:
                 table_format([site_requested.url, 'Headers'],
                              site_requested.return_site_headers())
