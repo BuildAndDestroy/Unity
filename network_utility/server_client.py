@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-    TCP/UDP client and server.
+    TCP/UDP client and server library.
 
     Copyright (C) 2017  Mitch O'Donnell devreap1@gmail.com
     This program is free software: you can redistribute it and/or modify
@@ -15,13 +15,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
-import argparse
 import socket
 
 
 class NetworkTools(object):
     """
-        Networking Class for tcp client and/or server.
+        Networking Class for tcp/udp client/server.
     """
 
     def __init__(self, port, host=None):
@@ -99,68 +98,3 @@ class NetworkTools(object):
         print '[*] Received from server {}, listening on port {}:\n {}'.format(
             self.host, self.port, data)
         self.s_udp.close()
-
-
-def parse_arguments():
-    """Obtain tcp/udp client or server specification then parse the host and port details."""
-    legal_statement = 'server_client.py Copyright (C) 2017  Mitch O\'Donnell\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it\nunder certain conditions.'
-    url = 'https://github.com/BuildAndDestroy/Unity'
-    epilog = '{}\n\n{}'.format(url, legal_statement)
-    parser = argparse.ArgumentParser(
-        description=__doc__, epilog=epilog, formatter_class=argparse.RawTextHelpFormatter)
-
-    subparsers = parser.add_subparsers(help='commands', dest='command')
-
-    tcp_client_subparser = subparsers.add_parser(
-        'tcp_client', help='Create a TCP client.')
-    tcp_client_subparser.add_argument(
-        'host', help='IPv4 Address of ethernet device for binding.')
-    tcp_client_subparser.add_argument(
-        'port', help='Port number we are binding, must be integer.')
-
-    tcp_server_subparser = subparsers.add_parser(
-        'tcp_server', help='Create a TCP server.')
-    tcp_server_subparser.add_argument(
-        'host', help='IPv4 Address of ethernet device for binding.')
-    tcp_server_subparser.add_argument(
-        'port', help='Port number we are binding, must be integer.')
-
-    udp_client_subparser = subparsers.add_parser(
-        'udp_client', help='Create a UDP client.')
-    udp_client_subparser.add_argument(
-        'host', help='IPv4 Address of ethernet device for binding.')
-    udp_client_subparser.add_argument(
-        'port', help='Port number we are binding, must be integer.')
-
-    udp_server_subparser = subparsers.add_parser(
-        'udp_server', help='Create a UDP server.')
-    udp_server_subparser.add_argument(
-        'host', help='IPv4 Address of ethernet device for binding.')
-    udp_server_subparser.add_argument(
-        'port', help='Port number we are binding, must be integer.')
-
-    args = parser.parse_args()
-    return args
-
-
-def main():
-    """Parse user arguments for tcp/udp client or server, then bind to host and port."""
-    args = parse_arguments()
-
-    if args.command == 'tcp_server':
-        tcp_server = NetworkTools(args.port, args.host)
-        tcp_server.tcp_server()
-    if args.command == 'tcp_client':
-        tcp_client = NetworkTools(args.port, args.host)
-        tcp_client.tcp_client()
-
-    if args.command == 'udp_server':
-        udp_server = NetworkTools(args.port, args.host)
-        udp_server.udp_server()
-    if args.command == 'udp_client':
-        udp_client = NetworkTools(args.port, args.host)
-        udp_client.udp_client()
-
-
-if __name__ == '__main__':
-    main()

@@ -7,3 +7,9 @@ If upgrading, run:
 
 sudo pip install --upgrade .
 
+
+Commands are:
+
+unity_scraper
+unity_server
+unity_client

@@ -13,7 +13,10 @@ from web_scraper.web_utils import RequestSite
 
 def parse_arguments():
     """Help menu with our tool's arguments"""
-    epilog = '[*] Webscraper for given URLs.\n\r'
+    legal_statement = 'Copyright (C) 2017  Mitch O\'Donnell\n    This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it\nunder certain conditions.'
+    url = 'https://github.com/BuildAndDestroy/Unity'
+    epilog = '[*] Webscraper for given URLs.\n\r[*] {}\n\r[*] {}'.format(
+        url, legal_statement)
     parser = argparse.ArgumentParser(
         epilog=epilog, formatter_class=argparse.RawTextHelpFormatter)
 
