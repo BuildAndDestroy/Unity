@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-"""
-    TCP/UDP client and server library.
+"""TCP/UDP client and server library.
 
     Copyright (C) 2017  Mitch O'Donnell devreap1@gmail.com
     This program is free software: you can redistribute it and/or modify

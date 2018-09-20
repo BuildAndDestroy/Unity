@@ -10,8 +10,9 @@ from setuptools import setup
 
 __version__ = '4.1-scripts-network'
 __author__ = 'Mitch O\'Donnell'
-packages = ['network_utility', 'web_scraper', 'scripts']
+packages = ['mailer', 'network_utility', 'web_scraper', 'scripts']
 commands = ['unity_client = scripts.unity_client:main',
+            'unity_send_mail = scripts.unity_send_mail:main',
             'unity_server = scripts.unity_server:main',
             'unity_scraper = scripts.unity_scraper:main']
 
