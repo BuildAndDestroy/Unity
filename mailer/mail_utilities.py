@@ -21,13 +21,13 @@ from email.mime.text import MIMEText
 
 class Email(object):
     """Compile an email for sending."""
+
     def __init__(self, my_email, your_email, subject, text_email_content, html_email_content):
         self.my_email = my_email
         self.your_email = your_email
         self.subject = subject
         self.text_email_content = text_email_content
         self.html_email_content = html_email_content
-        self.email_compiled = self.compile_email
 
     @property
     def compile_email(self):
@@ -44,23 +44,27 @@ class Email(object):
         message.attach(html_message)
         return message
 
+
 class SendEmail(object):
     """Manage connecting and disconnecting to a mail server."""
-    def __init__(self, username, password, mailserver, my_email, your_email, ssl, list_of_emails):
+
+    def __init__(self, username, password, mailserver, my_email, your_email, ssl, email_content):
         self.username = username
         self.password = password
         self.mailserver = mailserver
         self.my_email = my_email
         self.your_email = your_email
         self.ssl = ssl
-        self.list_of_emails = list_of_emails
+        self.email_content = email_content
 
     def test_objects(self):
+        """Test user input and verify the content parses."""
+
         print self.username
         print self.password
         print self.mailserver
         print self.ssl
-        print self.list_of_emails
+        print self.email_content
 
     def connect_send_disconnect(self):
         """Login to a mail server."""
@@ -71,12 +75,8 @@ class SendEmail(object):
             server = smtplib.SMTP(self.mailserver, 25)
 
         server.login(self.username, self.password)
-
-        #for email_content in self.list_of_emails:
-            #server.sendmail(my_email, your_email, email_content.as_string())
-        server.sendmail(self.my_email, self.your_email, self.list_of_emails.as_string())
-
+        server.sendmail(self.my_email, self.your_email,
+                        self.email_content.as_string())
         server.quit()
 
-
-        
+        print '[*] Email sent!'

@@ -8,7 +8,7 @@
 
 from setuptools import setup
 
-__version__ = '4.1-scripts-network'
+__version__ = '5.0-send-mail'
 __author__ = 'Mitch O\'Donnell'
 packages = ['mailer', 'network_utility', 'web_scraper', 'scripts']
 commands = ['unity_client = scripts.unity_client:main',
