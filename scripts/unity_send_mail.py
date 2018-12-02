@@ -21,7 +21,7 @@ import getpass
 from mailer.mail_utilities import Email, SendEmail
 
 
-def parse_args():
+def parse_arguments():
     """Accept user input, also create the help menu."""
     legal_statement = '[*] unity_send_mail Copyright (C) 2018 Mitch O\'Donnell\n    This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it\nunder certain conditions.'
     url = '[*] https://github.com/BuildAndDestroy/Unity'
@@ -29,38 +29,34 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description=__doc__, epilog=epilog, formatter_class=argparse.RawTextHelpFormatter)
 
-    subparsers = parser.add_subparsers(help='commands', dest='commands')
+    # subparsers = parser.add_subparsers(help='commands', dest='commands')
 
-    single_mailer = subparsers.add_parser(
-        'spear_fish', help='Send a single email.')
-    single_mailer.add_argument(
+    # single_mailer = subparsers.add_parser(
+    #     'spear_fish', help='Send a single email.')
+    parser.add_argument(
         'my_email', help='The email address you will be sending from as yourself.')
-    single_mailer.add_argument(
-        'your_email', help='The email address you will be sending to, the recipient.')
-    single_mailer.add_argument(
+    # parser.add_argument(
+    #     'your_email', help='The email address you will be sending to, the recipient.')
+    parser.add_argument(
         'mailserver', help='The mailserver we will connect to to send our email.')
-    single_mailer.add_argument(
-        'username', help='Set a username to login to the mailserver.Password will be asked on execute,')
-    single_mailer.add_argument(
+    parser.add_argument(
+        'username', help='Set a username to login to the mailserver.\n\rPassword will be asked on execute,')
+    parser.add_argument(
         'subject', help='The Subject of your email, put the string in quotes.')
-    single_mailer.add_argument(
+    parser.add_argument(
         'text_email', help='Type out your email but only text, put the message in quotes.')
-    single_mailer.add_argument(
+    parser.add_argument(
         'html_email', help='Craft an email using html, put the string in quotes.')
-
-    single_mailer.add_argument(
+    parser.add_argument(
         '-s', '--ssl', action='store_true', help='Use encryption to the mailserver.')
 
-    # mass_mailler = subparsers.add_parser('mass_mailler', help='Send an email to a list of emails.')
-    # mass_mailler.add_argument('my_email', help='The email address you will be sending from as yourself.')
-    # mass_mailler.add_argument('your_email', help='A file with email addresses you will be sending to, the recipients.\n\rA new email address on each line of the file.')
-    # mass_mailler.add_argument('mailserver', help='The mailserver we will connect to to send our email.')
-    # mass_mailler.add_argument('username', action='store_true', help='Set a username to login to the mailserver.\n\rPassword will be asked on execute,')
-    # mass_mailler.add_argument('subject', help='The Subject of your email, put the string in quotes.')
-    # mass_mailler.add_argument('text_email', help='Type out your email but only text, put the message in quotes.')
-    # mass_mailler.add_argument('html_email', help='Craft an email using html, put the string in quotes.')
+    subparsers = parser.add_subparsers(help='commands', dest='commands')
 
-    # mass_mailler.add_argument('-s', '--ssl', action='store_true', help='Use encryption to the mailserver.')
+    single_mailer = subparsers.add_parser('spear_fish', help='Send email to a single recipient.')
+    single_mailer.add_argument('your_email', help='The email address you will be sending to, the recipient.')
+
+    mass_mailer = subparsers.add_parser('mass_mailer', help='Send an email to a list of emails.')
+    mass_mailer.add_argument('your_email', help='A file with email addresses you will be sending to, the recipients.\n\rA new email address on each line of the file.')
 
     args = parser.parse_args()
     return args
@@ -68,7 +64,8 @@ def parse_args():
 
 def main():
     """Request password and ompile emailm then send."""
-    args = parse_args()
+    args = parse_arguments()
+    print args
 
     password = getpass.getpass()
 

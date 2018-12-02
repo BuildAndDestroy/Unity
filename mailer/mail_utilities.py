@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import os.path
 
 
 class Email(object):
@@ -59,7 +60,6 @@ class SendEmail(object):
 
     def test_objects(self):
         """Test user input and verify the content parses."""
-
         print self.username
         print self.password
         print self.mailserver
@@ -75,8 +75,18 @@ class SendEmail(object):
             server = smtplib.SMTP(self.mailserver, 25)
 
         server.login(self.username, self.password)
-        server.sendmail(self.my_email, self.your_email,
-                        self.email_content.as_string())
+
+        if os.path.isfile(self.your_email):
+            list_of_emails = []
+            with open(self.your_email, 'r') as file_of_emails:
+                for email in file_of_emails:
+                    list_of_emails.append(email.rstrip())
+
+            for each_email in list_of_emails:
+                server.sendmail(self.my_email, each_email, self.email_content.as_string())
+        else:
+            server.sendmail(self.my_email, self.your_email,
+                            self.email_content.as_string())
         server.quit()
 
         print '[*] Email sent!'
