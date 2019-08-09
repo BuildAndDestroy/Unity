@@ -1,15 +1,30 @@
-Install this program into the system (tested on Linux), clone or download zip. Change directory until setup.py is in the same directory, then run:
+# Unity Install Options
+* Into the OS with python2.7
+* Into a virtual environment using python2.7
+* Docker container
 
+# Install Dockerfile
+```
+docker build -t unity .
+docker run -it unity unity_scraper -h
+docker run -it unity unity_client -h
+docker run -it unity unity_server -h
+docker run -it unity unity_send_mail -h
+```
+
+## Install this package into the OS:
+
+```
 sudo pip install .
-
-
-If upgrading, run:
-
+```
+* If upgrading, run:
+```
 sudo pip install --upgrade .
+```
 
-
-Commands are:
-
-unity_scraper
-unity_server
-unity_client
+## Install using virtualenv
+```
+virtualenv unity
+source unity/bin/active
+pip install /path/to/Unity/.
+```
