@@ -5,5 +5,5 @@ RUN apt-get install python-pip -y
 RUN pip --version; pip install --upgrade pip
 RUN mkdir /opt/Unity/
 COPY ./ /opt/Unity/
+RUN pip install -r /opt/Unity/requirements.txt
 RUN pip install /opt/Unity/.
-
