@@ -28,6 +28,6 @@ setup(
     license                 = open('LICENSE').read(),
     install_requirements    = ['argparse', 'socket', 'requests', 'prettytable'],
     entry_points            = {'console_scripts': commands},
-    prefix                  = '/opt/Network_Utilities',
+    prefix                  = '/opt/Unity',
     long_description        = open('README.md').read()
 )
