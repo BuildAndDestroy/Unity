@@ -18,7 +18,7 @@ commands = ['unity_client = scripts.unity_client:main',
 
 
 setup(
-    name                    = 'Network Utilities',
+    name                    = 'Unity',
     version                 = __version__,
     description             = 'Network Utilities to help with communicating between devices.',
     author                  =__author__,
@@ -26,7 +26,7 @@ setup(
     packages                = packages,
     url                     = '',
     license                 = open('LICENSE').read(),
-    install_requirements    = ['argparse', 'socket', 'requests', 'prettytable'],
+    install_requires        = ['argparse', 'socket', 'requests', 'prettytable'],
     entry_points            = {'console_scripts': commands},
     prefix                  = '/opt/Unity',
     long_description        = open('README.md').read()
