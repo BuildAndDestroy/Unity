@@ -26,7 +26,7 @@ setup(
     packages                = packages,
     url                     = '',
     license                 = open('LICENSE').read(),
-    install_requires        = ['argparse', 'socket', 'requests', 'prettytable'],
+    install_requires        = ['argparse', 'requests', 'prettytable'],
     entry_points            = {'console_scripts': commands},
     prefix                  = '/opt/Unity',
     long_description        = open('README.md').read()
