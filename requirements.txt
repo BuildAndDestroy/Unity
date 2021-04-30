@@ -5,4 +5,4 @@ Network-Utilities===5.0-send-mail
 pkg-resources==0.0.0
 prettytable==0.7.2
 requests==2.22.0
-urllib3==1.25.7
+urllib3==1.25.8
