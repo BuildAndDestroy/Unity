@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """TCP/UDP client and server.
 
 Copyright (C) 2017  Mitch O'Donnell devreap1@gmail.com
@@ -19,7 +19,7 @@ import argparse
 from network_utility.server_client import NetworkTools
 
 
-def parse_arguments():
+def parse_arguments() -> tuple:
     """Obtain tcp/udp client or server specification then parse the host and port details."""
     legal_statement = 'Copyright (C) 2017  Mitch O\'Donnell\n    This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it\nunder certain conditions.'
     url = 'https://github.com/BuildAndDestroy/Unity'
@@ -48,7 +48,7 @@ def parse_arguments():
     return args
 
 
-def main():
+def main() -> None:
     """Parse user arguments for tcp/udp server, then bind to host and port."""
     args = parse_arguments()
 

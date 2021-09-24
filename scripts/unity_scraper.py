@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Web scraper for everything online.
 
 The concept here is to use Python as a webscraper for online material.
@@ -11,7 +11,7 @@ import prettytable
 from web_scraper.web_utils import RequestSite
 
 
-def parse_arguments():
+def parse_arguments() -> tuple:
     """Help menu with our tool's arguments"""
     legal_statement = 'Copyright (C) 2017  Mitch O\'Donnell\n    This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it\nunder certain conditions.'
     url = 'https://github.com/BuildAndDestroy/Unity'
@@ -41,15 +41,15 @@ def parse_arguments():
     return args
 
 
-def table_format(header_list, data_dictionary):
+def table_format(header_list, data_dictionary) -> None:
     """Take site requests and print to table format."""
     table = prettytable.PrettyTable(header_list)
-    for key, value in data_dictionary.iteritems():
+    for key, value in data_dictionary.items():
         table.add_row([key, value])
-    print table
+    print(table)
 
 
-def main():
+def main() -> None:
     """Scrape websites for usable data."""
     args = parse_arguments()
 
@@ -60,24 +60,22 @@ def main():
                 table_format([site_requested.url, 'Response'],
                              site_requested.return_site_status())
             else:
-                print '{}: {}'.format(url, site_requested.return_site_status())
+                print(f'{url}: {site_requested.return_site_status()}')
         if args.get_headers:
             if args.pretty:
                 table_format([site_requested.url, 'Headers'],
                              site_requested.return_site_headers())
             else:
-                print '{}: {}'.format(
-                    url, site_requested.return_site_headers())
+                print(f'{url}: {site_requested.return_site_headers()}')
         if args.cookies:
             if args.pretty:
                 table_format([site_requested.url, 'Cookies'],
                              site_requested.return_site_cookies())
             else:
-                print '{}: {}'.format(
-                    url, site_requested.return_site_cookies())
+                print(f'{url}: {site_requested.return_site_cookies()}')
         if args.landing:
-            print '[*] {}'.format(url)
-            print site_requested.return_site_text()
+            print(f'[*] {url}')
+            print(site_requested.return_site_text())
 
 
 if __name__ == '__main__':

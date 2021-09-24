@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Script to create an email and send through external mailserver.
 
 Copyright (C) 2018  Mitch O'Donnell devreap1@gmail.com
@@ -21,7 +21,7 @@ import getpass
 from mailer.mail_utilities import Email, SendEmail
 
 
-def parse_args():
+def parse_args() -> tuple:
     """Accept user input, also create the help menu."""
     legal_statement = '[*] unity_send_mail Copyright (C) 2018 Mitch O\'Donnell\n    This program comes with ABSOLUTELY NO WARRANTY.\n    This is free software, and you are welcome to redistribute it\nunder certain conditions.'
     url = '[*] https://github.com/BuildAndDestroy/Unity'
@@ -66,7 +66,7 @@ def parse_args():
     return args
 
 
-def main():
+def main() -> None:
     """Request password and ompile emailm then send."""
     args = parse_args()
 
