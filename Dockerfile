@@ -1,8 +1,8 @@
-FROM ubuntu:bionic
+FROM debian:latest
 RUN apt-get update -y
 RUN apt-get install software-properties-common -y
-RUN apt-get install python-pip -y
-RUN pip --version; pip install --upgrade pip
+RUN apt-get install python3 python3-pip -y
+RUN pip3 --version; pip3 install --upgrade pip
 RUN mkdir /opt/Unity/
 COPY ./ /opt/Unity/
-RUN pip install /opt/Unity/.
+RUN pip3 install /opt/Unity/.

@@ -1,14 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 	To install, run:
-	sudo pip install .
+	sudo pip3 install .
 	If upgrading, run:
-	sudo pip install --upgrade .
+	sudo pip3 install --upgrade .
 """
 
 from setuptools import setup
 
-__version__ = '5.0-send-mail'
+__version__ = '6.0-python3'
 __author__ = 'Mitch O\'Donnell'
 packages = ['mailer', 'network_utility', 'web_scraper', 'scripts']
 commands = ['unity_client = scripts.unity_client:main',

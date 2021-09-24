@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Mail library for unity_send_mail script.
 
 Copyright (C) 2018  Mitch O'Donnell devreap1@gmail.com
@@ -22,7 +22,7 @@ from email.mime.text import MIMEText
 class Email(object):
     """Compile an email for sending."""
 
-    def __init__(self, my_email, your_email, subject, text_email_content, html_email_content):
+    def __init__(self, my_email, your_email, subject, text_email_content, html_email_content) -> None:
         self.my_email = my_email
         self.your_email = your_email
         self.subject = subject
@@ -30,7 +30,7 @@ class Email(object):
         self.html_email_content = html_email_content
 
     @property
-    def compile_email(self):
+    def compile_email(self) -> str:
         """Create an eamil in text and html format."""
         message = MIMEMultipart('alternative')
         message['Subject'] = self.subject
@@ -48,7 +48,7 @@ class Email(object):
 class SendEmail(object):
     """Manage connecting and disconnecting to a mail server."""
 
-    def __init__(self, username, password, mailserver, my_email, your_email, ssl, email_content):
+    def __init__(self, username, password, mailserver, my_email, your_email, ssl, email_content) -> None:
         self.username = username
         self.password = password
         self.mailserver = mailserver
@@ -57,16 +57,16 @@ class SendEmail(object):
         self.ssl = ssl
         self.email_content = email_content
 
-    def test_objects(self):
+    def test_objects(self) -> None:
         """Test user input and verify the content parses."""
 
-        print self.username
-        print self.password
-        print self.mailserver
-        print self.ssl
-        print self.email_content
+        print(self.username)
+        print(self.password)
+        print(self.mailserver)
+        print(self.ssl)
+        print(self.email_content)
 
-    def connect_send_disconnect(self):
+    def connect_send_disconnect(self) -> None:
         """Login to a mail server."""
         if self.ssl:
             server = smtplib.SMTP_SSL(self.mailserver, 465)
@@ -79,4 +79,4 @@ class SendEmail(object):
                         self.email_content.as_string())
         server.quit()
 
-        print '[*] Email sent!'
+        print('[*] Email sent!')
