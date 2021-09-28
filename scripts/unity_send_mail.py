@@ -35,7 +35,8 @@ def parse_args() -> tuple:
         'spear_fish', help='Send emails.')
     single_mailer.add_argument(
         'my_email', help='The email address you will be sending from as yourself.')
-    single_mailer.add_argument('my_display_name', help='My display name that I want displayed in the email')
+    single_mailer.add_argument(
+        'my_display_name', help='My display name that I want displayed in the email')
     single_mailer.add_argument(
         'your_email', help='The email address, or file full of email addresses, you will be sending to. The recipient.')
     single_mailer.add_argument(
@@ -61,15 +62,17 @@ def main() -> None:
 
     password = getpass.getpass()
     if args.commands == 'spear_fish':
-       #email_content = Email(args.my_email, args.my_display_name, args.your_email,
-       #                      args.subject, args.html_email)
-       #send_email = SendEmail(args.username, password, args.mailserver,
-       #                       args.my_email, args.my_display_name, args.your_email, args.ssl, email_content.compile_email)
-       #send_email.connect_send_disconnect()
-       send_email = SendEmail(args.my_email, args.my_display_name, args.your_email, args.subject, args.html_email, args.username, password, args.mailserver, args.ssl)
-       send_email.connect_send_disconnect()
+        # email_content = Email(args.my_email, args.my_display_name, args.your_email,
+        #                      args.subject, args.html_email)
+        # send_email = SendEmail(args.username, password, args.mailserver,
+        #                       args.my_email, args.my_display_name, args.your_email, args.ssl, email_content.compile_email)
+        # send_email.connect_send_disconnect()
+        send_email = SendEmail(args.my_email, args.my_display_name, args.your_email,
+                               args.subject, args.html_email, args.username, password, args.mailserver, args.ssl)
+        send_email.connect_send_disconnect()
     else:
         print('[*] Use a positional argument!')
+
 
 if __name__ == '__main__':
     main()

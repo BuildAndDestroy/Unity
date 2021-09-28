@@ -20,7 +20,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-class Email(object):
+class Email:
     """Compile an email for sending."""
 
     def __init__(self, my_email, my_display_name, your_email, subject, html_email_file) -> None:
@@ -44,7 +44,7 @@ class Email(object):
             read_file_html = html_file.read()
         return read_file_html
 
-    #@property
+    # @property
     def compile_email(self, your_email) -> str:
         """Create an email in html format."""
         message = MIMEMultipart('alternative')
@@ -73,7 +73,6 @@ class SendEmail(Email):
         print(self.password)
         print(self.mailserver)
         print(self.ssl)
-        print(self.email_content)
 
     def username_is_file(self) -> bool:
         """Check if username is string or file."""
@@ -103,7 +102,8 @@ class SendEmail(Email):
         if self.username_is_file():
             for index in self.list_of_emails():
                 compiled_email = super().compile_email(index)
-                server.sendmail(self.my_email, index, compiled_email.as_string())
+                server.sendmail(self.my_email, index,
+                                compiled_email.as_string())
                 print(f'[*] Email sent to {index}!')
         else:
             compiled_email = super().compile_email(self.your_email)
