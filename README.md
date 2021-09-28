@@ -1,6 +1,6 @@
 # Unity Install Options
-* Into the OS with python2.7
-* Into a virtual environment using python2.7
+* Into the OS with python3.x
+* Into a virtual environment using python3.x
 * Docker container
 
 # Install Dockerfile
