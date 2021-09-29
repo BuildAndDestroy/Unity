@@ -56,17 +56,11 @@ def parse_args() -> tuple:
 
 
 def main() -> None:
-    """Request password and ompile emailm then send."""
+    """Request password, compile email, then send."""
     args = parse_args()
-    print(args)
 
     password = getpass.getpass()
     if args.commands == 'spear_fish':
-        # email_content = Email(args.my_email, args.my_display_name, args.your_email,
-        #                      args.subject, args.html_email)
-        # send_email = SendEmail(args.username, password, args.mailserver,
-        #                       args.my_email, args.my_display_name, args.your_email, args.ssl, email_content.compile_email)
-        # send_email.connect_send_disconnect()
         send_email = SendEmail(args.my_email, args.my_display_name, args.your_email,
                                args.subject, args.html_email, args.username, password, args.mailserver, args.ssl)
         send_email.connect_send_disconnect()
